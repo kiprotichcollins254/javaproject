@@ -39,7 +39,37 @@ public class Main {
         double leftVal = valueFromWord(parts[1]);
         double rightVal = valueFromWord(parts[2]);
         double result = execute(opCode,leftVal,rightVal);
-        System.out.println(result);
+//        System.out.println(result);
+        displayResult(opCode,leftVal,rightVal,result);
+    }
+
+    private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
+        char symbol = symbolFromOpCode(opCode);
+        StringBuilder builder = new StringBuilder(50);
+        builder.append("Result is : ");
+        builder.append(" ");
+        builder.append(leftVal);
+        builder.append(" ");
+        builder.append(symbol);
+        builder.append(" ");
+        builder.append(rightVal);
+        builder.append(" = ");
+        builder.append(result);
+        String output = builder.toString();
+        System.out.println(output);
+    }
+
+    private static char symbolFromOpCode(char opCode){
+        char[] opCodes = {'a','s','m','d'};
+        char[] symbols = {'+','-','*','/'};
+        char symbol = ' ';
+        for(int op = 0;op < opCodes.length;op++){
+            if (opCode == opCodes[op]){
+                symbol = symbols[op];
+                break;
+            }
+        }
+        return symbol;
     }
 
     private static void handleCommandLine(String[] args){
